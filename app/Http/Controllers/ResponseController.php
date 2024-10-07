@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use
-
 class ResponseController extends Controller
 {
     public function __construct()
@@ -11,23 +9,34 @@ class ResponseController extends Controller
         //...
     }
 
-    public function success() {
-        //200
+    public static function success(array $return) {
+        return response()->json($return);
     }
 
     public function login_failed() {
-        //403
+        return response()->json([
+            'message' => 'Login failed'
+        ], 403);
     }
 
-    public function forbidden() {
-        //403
+    public static function forbidden() {
+        return response()->json([
+            'message' => 'Forbidden for you'
+        ], 403);
     }
 
-    public function not_found() {
-        //404
+    public static function not_found() {
+        return response()->json([
+            'message' => 'Not found'
+        ], 403);
     }
 
-    public function validation_failed() {
-        //422
+    public static function validation_failed(array $error_message) {
+        return response()->json([
+            'success' => false,
+            'message' => [
+                $error_message
+            ]
+        ], 422);
     }
 }
