@@ -13,7 +13,7 @@ class ResponseController extends Controller
         return response()->json($return);
     }
 
-    public function login_failed() {
+    public static function login_failed() {
         return response()->json([
             'message' => 'Login failed'
         ], 403);
